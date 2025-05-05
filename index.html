@@ -1,64 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A/B Test Forecast Tool</title>
+    <title>Basic A/B Test Forecast Tool</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>A/B Test Forecast Tool</h1>
-        <form id="abTestForm">
-            <div class="form-group">
-                <label for="metric">What primary metric are you trying to improve?</label>
-                <select id="metric" name="metric">
-                    <option value="">Select...</option>
-                    <option value="conversionRate">Conversion Rate</option>
-                    <option value="clickThroughRate">Click-Through Rate (CTR)</option>
-                    <option value="bounceRate">Bounce Rate</option>
-                    <option value="timeOnPage">Time on Page</option>
-                    </select>
+        <h1>Basic A/B Test Forecast</h1>
+        <div id="step-1" class="step active">
+            <h2>What do you want to improve?</h2>
+            <div class="options">
+                <button data-goal="clicks">More Clicks on a Button</button>
+                <button data-goal="signups">More People to Sign Up</button>
+                <button data-goal="sales">More Sales</button>
+                <button data-goal="engagement">More Engagement</button>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="changeType">What type of change are you considering?</label>
-                <select id="changeType" name="changeType">
-                    <option value="">Select...</option>
-                    <option value="headline">Headline</option>
-                    <option value="buttonText">Button Text</option>
-                    <option value="image">Image/Visual</option>
-                    <option value="layout">Layout/Structure</option>
-                    <option value="formLength">Form Length</option>
-                    </select>
+        <div id="step-2" class="step hidden">
+            <h2>Describe What You're Testing</h2>
+            <textarea id="change-description"></textarea>
+            <button class="next-btn">Next</button>
+        </div>
+
+        <div id="step-3" class="step hidden">
+            <h2 data-question="current"></h2>
+            <input type="number" id="current-value">
+            <input type="text" id="current-period" placeholder="per day/week">
+            <button class="next-btn">Next</button>
+        </div>
+
+        <div id="step-4" class="step hidden">
+            <h2>How much better do you think the new version will be?</h2>
+            <div class="improvement-options">
+                <input type="range" id="expected-improvement" min="1" max="100" value="10">
+                <span id="improvement-value">10%</span>
             </div>
+            <button class="next-btn">Next</button>
+        </div>
 
-            <div class="form-group">
-                <label for="confidenceLevel">What is your desired confidence level (e.g., 90%, 95%)?</label>
-                <input type="number" id="confidenceLevel" name="confidenceLevel" min="80" max="99" step="1" placeholder="e.g., 95">
-            </div>
+        <div id="step-5" class="step hidden">
+            <h2>About how many people will see this test?</h2>
+            <input type="number" id="sample-size">
+            <input type="text" id="sample-period" placeholder="visitors per day/week">
+            <button id="calculate-btn">Get Forecast</button>
+        </div>
 
-            <div class="form-group">
-                <label for="baselineRate">What is the current (baseline) conversion/click-through/etc. rate (as a percentage)?</label>
-                <input type="number" id="baselineRate" name="baselineRate" min="0" max="100" step="0.1" placeholder="e.g., 2.5">
-            </div>
+        <div id="output" class="step hidden">
+            <h2>Forecast</h2>
+            <p id="forecast-result"></p>
+            <button class="restart-btn">Start Over</button>
+        </div>
 
-            <div class="form-group">
-                <label for="mde">What is the Minimum Detectable Effect (MDE) you're interested in (as a percentage)?</label>
-                <input type="number" id="mde" name="mde" min="0.1" step="0.1" placeholder="e.g., 5 (meaning a 5% relative increase)">
-            </div>
-
-            <button type="button" onclick="calculateForecast()">Calculate Forecast</button>
-        </form>
-
-        <div id="forecastResults" class="hidden">
-            <h2>Forecasted Results:</h2>
-            <p id="sampleSizeNeeded"></p>
-            <p id="durationEstimate"></p>
-            <p id="potentialUplift"></p>
+        <div class="navigation">
+            <button id="prev-btn" disabled>Previous</button>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

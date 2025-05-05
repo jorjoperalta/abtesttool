@@ -1,57 +1,43 @@
-body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-}
-
 .container {
     max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
+    margin: 50px auto;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border-radius: 5px;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+.step {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.step.active {
+    display: block;
+}
+
+.options button {
+    padding: 10px 20px;
+    margin-right: 10px;
     cursor: pointer;
-    font-size: 16px;
 }
 
-button:hover {
-    background-color: #0056b3;
+.improvement-options {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
-#forecastResults {
-    margin-top: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
+.improvement-options input[type="range"] {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.navigation button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
